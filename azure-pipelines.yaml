@@ -1,0 +1,22 @@
+trigger:
+  - master
+
+variables:
+  - name: major
+    value: 0
+  - name: minor
+    value: 1
+  - name: micro
+    value: 0
+
+name: $(major).$(minor).$(micro)-$(Rev:r)
+
+jobs:
+  - job: BuildArtifacts
+    pool:
+      vmImage: Ubuntu-16.04
+    steps:
+      - task: Gradle@1
+        displayName: Build
+        inputs:
+          jdkVersionOption: 1.11
