@@ -12,7 +12,7 @@ variables:
 name: $(major).$(minor).$(micro)-$(Rev:r)
 
 jobs:
-  - job: BuildArtifacts
+  - job: Artifacts Build
     pool:
       vmImage: Ubuntu-16.04
     steps:
