@@ -1,0 +1,8 @@
+---
+applications:
+- name: steeltoe-initializr-configserver
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.31.1
+  memory: 1024M
+  path: ../../build/libs/Steeltoe.Initializr.ConfigServer-0.1.0-SNAPSHOT.jar
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'

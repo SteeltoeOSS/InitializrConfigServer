@@ -20,3 +20,19 @@ jobs:
         displayName: Build
         inputs:
           jdkVersionOption: 1.11
+      - task: CloudFoundryCLIInstall@0
+        displayName: Install CF CLI
+        inputs:
+          cfVersion: 6.51.0
+      - task: CloudFoundry@1
+        displayName: Push to Staging
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+        inputs:
+          cfEndpoint: PCFone
+          skipSSLValidation: true
+          org: group-steeltoe
+          space: staging
+          deploymentOptions: manifest
+          cfManifest: deploy/cloud-foundry/manifest-staging.yaml
+          createServices: false
+          bindServices: false
