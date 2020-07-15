@@ -2,5 +2,14 @@
 /build/
 /.gradle/
 
+# Visual Studio Code
+/.vscode/
+
 # IntelliJ
 /.idea/
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+/bin/
