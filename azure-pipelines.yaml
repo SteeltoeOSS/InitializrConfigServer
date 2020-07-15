@@ -33,6 +33,6 @@ jobs:
           org: group-steeltoe
           space: staging
           deploymentOptions: manifest
-          cfManifest: deploy/cloud-foundry/manifest-staging.yaml
+          cfManifest: deploy/cloud-foundry/manifest-Staging.yaml
           createServices: false
           bindServices: false
