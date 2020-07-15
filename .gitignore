@@ -1,3 +1,6 @@
+# local note pad
+/notes
+
 # Gradle output
 /build/
 /.gradle/
