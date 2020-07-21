@@ -26,10 +26,11 @@ jobs:
           jdkVersionOption: 1.11
       - task: CloudFoundry@1
         displayName: Deploy
-        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
         inputs:
           cfEndpoint: PCFone
           org: group-steeltoe
           space: initializr-dev
           deploymentOptions: manifest
           cfManifest: deploy/cloud-foundry/manifest.yaml
+        condition:
+          and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'), not(eq(variables['build.reason'], 'PullRequest')))
