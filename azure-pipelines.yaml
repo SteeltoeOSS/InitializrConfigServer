@@ -1,4 +1,6 @@
 trigger:
+  - dev
+  - staging
   - master
 
 variables:
@@ -35,7 +37,7 @@ jobs:
           cfManifest: deploy/cloud-foundry/manifest-Development.yaml
       - task: CloudFoundry@1
         displayName: Deploy Staging
-        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
         inputs:
           cfEndpoint: PCFone
           skipSSLValidation: true
@@ -43,5 +45,3 @@ jobs:
           space: staging
           deploymentOptions: manifest
           cfManifest: deploy/cloud-foundry/manifest-Staging.yaml
-          createServices: false
-          bindServices: false
