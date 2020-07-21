@@ -1,6 +1,5 @@
 trigger:
   - dev
-  - master
 
 variables:
   - name: major
@@ -26,23 +25,11 @@ jobs:
         inputs:
           jdkVersionOption: 1.11
       - task: CloudFoundry@1
-        displayName: Deploy Development
+        displayName: Deploy
         condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
         inputs:
           cfEndpoint: PCFone
           org: group-steeltoe
-          space: initializr
+          space: initializr-dev
           deploymentOptions: manifest
-          cfManifest: deploy/cloud-foundry/manifest-Development.yaml
-      - task: CloudFoundry@1
-        displayName: Deploy Staging
-        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-        inputs:
-          cfEndpoint: PCFone
-          skipSSLValidation: true
-          org: group-steeltoe
-          space: staging
-          deploymentOptions: manifest
-          cfManifest: deploy/cloud-foundry/manifest-Staging.yaml
-          createServices: false
-          bindServices: false
+          cfManifest: deploy/cloud-foundry/manifest.yaml
