@@ -25,6 +25,15 @@ jobs:
         inputs:
           jdkVersionOption: 1.11
       - task: CloudFoundry@1
+        displayName: Deploy Development
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+        inputs:
+          cfEndpoint: PCFone
+          org: group-steeltoe
+          space: development
+          deploymentOptions: manifest
+          cfManifest: deploy/cloud-foundry/manifest-Development.yaml
+      - task: CloudFoundry@1
         displayName: Deploy Staging
         condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
         inputs:
