@@ -1,7 +1,8 @@
 ---
 applications:
 - name: steeltoe-initializr-cfg
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.31.1
+  buildpacks:
+    - https://github.com/cloudfoundry/java-buildpack.git#v4.31.1
   path: ../../build/libs/Steeltoe.Initializr.ConfigServer-0.1.0-SNAPSHOT.jar
   memory: 1024M
   env:
