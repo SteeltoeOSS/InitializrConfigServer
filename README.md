@@ -1,5 +1,5 @@
-# Steeltoe.Initializr.ConfigServer
-Steeltoe.Initializr.WebApi Spring Cloud Config Server
+# InitializrConfigServer
+Configuration server for [Steeltoe Initializr API](https://github.com/SteeltoeOSS/InitializrApi) reference implementation
 
 ## Deploying
 
