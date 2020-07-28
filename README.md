@@ -1,5 +1,5 @@
-# InitializrConfigServer
-Configuration server for [Steeltoe Initializr API](https://github.com/SteeltoeOSS/InitializrApi) reference implementation
+# Steeltow InitializrConfigServer
+Configuration server for [Steeltoe InitializrApi](https://github.com/SteeltoeOSS/InitializrApi)
 
 ## Deploying
 
