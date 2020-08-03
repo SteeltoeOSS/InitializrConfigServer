@@ -40,7 +40,7 @@ springBoot {
 
 bootJar {
     manifest {
-        attributes("Implementation-Title": "Steeltoe.Initializr.ConfigServer")
+        attributes("Implementation-Title": "Steeltoe InitializrConfigServer")
         attributes("Implementation-Version": steeltoeInitializrConfigServerVersion)
         attributes("Implementation-Vendor": "SteeltoeOSS/VMware")
     }

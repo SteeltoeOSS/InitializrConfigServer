@@ -2,7 +2,7 @@ server:
   port: 8888
 spring:
   application:
-    name: Steeltoe Initializr Config Server
+    name: Steeltoe InitializrConfigServer
   cloud:
     config:
       server:
