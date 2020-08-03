@@ -8,6 +8,8 @@ spring:
       server:
         git:
           uri: https://github.com/steeltoeoss-incubator/Steeltoe.Initializr.Configuration.git
+  main:
+    banner-mode: off
 logging:
   level:
     root: warn
