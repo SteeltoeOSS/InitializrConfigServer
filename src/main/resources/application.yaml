@@ -2,12 +2,14 @@ server:
   port: 8888
 spring:
   application:
-    name: Steeltoe Initializr Config Server
+    name: Steeltoe InitializrConfigServer
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/steeltoeoss-incubator/Steeltoe.Initializr.Configuration.git
+          uri: https://github.com/SteeltoeOSS/InitializrConfig
+  main:
+    banner-mode: off
 logging:
   level:
     root: warn
