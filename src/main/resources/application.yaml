@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/steeltoeoss-incubator/Steeltoe.Initializr.Configuration.git
+          uri: https://github.com/SteeltoeOSS/InitializrConfig.git
   main:
     banner-mode: off
 logging:
