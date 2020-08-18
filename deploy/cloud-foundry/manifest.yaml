@@ -3,7 +3,7 @@ applications:
 - name: initializr-cfg
   buildpacks:
     - https://github.com/cloudfoundry/java-buildpack.git#v4.31.1
-  path: ../../build/libs/InitializrConfigServer-0.1.0-SNAPSHOT.jar
+  path: ../../build/libs/Steeltoe.InitializrConfigServer-0.1.0-SNAPSHOT.jar
   memory: 1024M
   env:
     JBP_CONFIG_JAVA_MAIN: '{ arguments: "--logging.level.org.springframework.web=debug" }'
