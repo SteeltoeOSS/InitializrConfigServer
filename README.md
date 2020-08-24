@@ -51,7 +51,7 @@ $ cf push -f deploy/cloud-foundry/manifest.yaml
 # get the development profile
 $ http http://localhost:8888/SteeltoeInitializr/Development
 
-# get the development profile per a brnach
+# get the development profile per a branch
 $ http http://localhost:8888/SteeltoeInitializr/Development/master
 
 # get the development profile per a tag
