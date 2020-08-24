@@ -6,19 +6,25 @@ A [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config/multi
 
 ### Using Gradle
 
-```
+```sh
 $ ./gradlew bootRun
 ```
 
 ### Using Application Jar
 
-```
+```sh
 $ ./gradlew bootJar
 $ java -jar build/libs/Steeltoe.InitializrConfigServer-*.jar
-
 ```
 
 ## Options
+
+_Note: If running a local server using the Gradle `bootRun` task, pass options using the `-Pargs` option.
+This example overrides `io.steeltoe` logger levels:_
+
+```sh
+$ ./gradlew bootRun -Pargs='--logging.level.io.steeltoe=debug'
+```
 
 ### Git Backend
 ```
@@ -31,12 +37,11 @@ $ java -jar build/libs/Steeltoe.InitializrConfigServer-*.jar
   --spring.cloud.config.server.native.searchLocations=file:///path/to/mybackend/
 ```
 
-
 ## Deploying
 
 ### Cloud Foundry
 
-```
+```sh
 $ cf push -f deploy/cloud-foundry/manifest.yaml
 ```
 
