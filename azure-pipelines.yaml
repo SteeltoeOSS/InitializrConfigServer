@@ -16,10 +16,6 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     steps:
-      - task: CloudFoundryCLIInstall@0
-        displayName: Prep Cloud Foundry CLI
-        inputs:
-          cfVersion: 6.51.0
       - task: Gradle@1
         displayName: Gradle Build
         inputs:
