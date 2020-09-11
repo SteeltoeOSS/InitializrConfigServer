@@ -2,7 +2,7 @@
 applications:
 - name: initializr-cfg
   buildpacks:
-    - https://github.com/cloudfoundry/java-buildpack.git#v4.31.1
+    - https://github.com/cloudfoundry/java-buildpack.git#v4.32.1
   path: ../../build/libs/Steeltoe.InitializrConfigServer-0.1.0-SNAPSHOT.jar
   routes:
     - route: initializr-cfg.apps.pcfone.io
