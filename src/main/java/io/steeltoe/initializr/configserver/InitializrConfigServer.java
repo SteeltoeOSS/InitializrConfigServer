@@ -20,12 +20,12 @@ import java.util.Properties;
 
 @EnableConfigServer
 @SpringBootApplication
-public class ConfigServerApplication implements ApplicationContextAware {
+public class InitializrConfigServer implements ApplicationContextAware {
 
-    private static final Logger logger = LoggerFactory.getLogger(ConfigServerApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(InitializrConfigServer.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(ConfigServerApplication.class, args);
+        SpringApplication.run(InitializrConfigServer.class, args);
     }
 
     @Override
@@ -42,5 +42,7 @@ public class ConfigServerApplication implements ApplicationContextAware {
             }
         }
         logger.info("{}, version {} [{}]", buildProperties.getName(), buildProperties.getVersion(), gitProperties.getOrDefault("git.commit.id", "unknown"));
+        Package springPkg = EnableConfigServer.class.getPackage();
+        logger.info("{}, version {}", springPkg.getImplementationTitle(), springPkg.getImplementationVersion());
     }
 }
