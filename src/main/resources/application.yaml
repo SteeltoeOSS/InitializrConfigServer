@@ -14,5 +14,4 @@ logging:
   level:
     root: warn
     io.steeltoe: info
-    org.springframework.boot: info
-    org.springframework.web: info
+    org.springframework: info
