@@ -2,42 +2,45 @@
 
 A [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html) for [Steeltoe InitializrApi](https://github.com/SteeltoeOSS/InitializrApi)
 
-## Building and Running
-
-### Using Gradle
+## Build
 
 ```sh
-$ ./gradlew bootRun
+$ ./gradlew bootJar
 ```
+
+## Docker
+```sh
+$ docker build -t initializr-config-server .
+```
+
+## Run
 
 ### Using Application Jar
 
 ```sh
-$ ./gradlew bootJar
-$ java -jar build/libs/Steeltoe.InitializrConfigServer-*.jar
+$ java -jar build/libs/InitializrConfigServer-*.jar <args>
 ```
 
-## Options
-
-_Note: If running a local server using the Gradle `bootRun` task, pass options using the `-Pargs` option.
-This example overrides `io.steeltoe` logger levels:_
+### Using Gradle
 
 ```sh
-$ ./gradlew bootRun -Pargs='--logging.level.io.steeltoe=debug'
+$ ./gradlew bootRun -Pargs=<args>
 ```
 
-### Git Backend
-```
---spring.cloud.config.server.git.uri=https://my.git/user/repo
+### Using Docker
+
+```sh
+$ docker -it --rm -p 8888:8888 initializr-config-server <args>
 ```
 
-### Local Backend
-```
---spring.profiles.active=native \
-  --spring.cloud.config.server.native.searchLocations=file:///path/to/mybackend/
+## Deploy
+
+### Kubernetes
+
+```sh
+$ kubectl apply -f deploy/manifest/local.yaml
 ```
 
-## Deploying
 
 ### Cloud Foundry
 
@@ -45,18 +48,37 @@ $ ./gradlew bootRun -Pargs='--logging.level.io.steeltoe=debug'
 $ cf push -f deploy/cloud-foundry/manifest.yaml
 ```
 
-## Client Examples
+## Options
 
-```sh
-# get the development profile
-$ http http://localhost:8888/SteeltoeInitializr/Development
+### Logging
 
-# get the development profile per a branch
-$ http http://localhost:8888/SteeltoeInitializr/Development/master
+```
+logging.level.io.steeltoe={error,warn,info,debug,trace}
+```
 
-# get the development profile per a tag
-$ http http://localhost:8888/SteeltoeInitializr/Development/0.1.0
+### Git Backend
+```
+spring.cloud.config.server.git.uri=<url>
+```
 
-# get the development profile per a commit
-$ http http://localhost:8888/SteeltoeInitializr/Development/f425c275a3bff305b0b3bf2b1c4586fa7400b527
+### Local Backend
+```
+spring.profiles.active=native
+spring.cloud.config.server.native.searchLocations=file://<path>
+```
+
+## Sample URL paths
+
+```
+# development profile
+/SteeltoeInitializr/Development
+
+# development profile per a branch
+/SteeltoeInitializr/Development/master
+
+# development profile per a tag
+/SteeltoeInitializr/Development/0.1.0
+
+# development profile per a commit
+/SteeltoeInitializr/Development/f425c275a3bff305b0b3bf2b1c4586fa7400b527
 ```

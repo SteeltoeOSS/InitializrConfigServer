@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: initializr-config-server
+spec:
+  selector:
+    matchLabels:
+      app: initializr-config-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: initializr-config-server
+    spec:
+      containers:
+      - name: initializr-config-server
+        image: initializr-config-server
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8888
