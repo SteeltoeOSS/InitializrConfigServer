@@ -1,6 +1,6 @@
 ---
 applications:
-- name: initializr-cfg
+- name: initializr-config-server
   buildpacks:
     - https://github.com/cloudfoundry/java-buildpack.git#v4.32.1
   path: ../../build/libs/InitializrConfigServer-0.1.0-SNAPSHOT.jar
