@@ -25,3 +25,13 @@ jobs:
           tags: |
             latest
             $(Build.BuildId)
+      - task: KubernetesManifest@0
+        displayName: Deploy to Staging
+        inputs:
+          action: deploy
+          kubernetesServiceConnection: SteeltoeStagingAKS
+          namespace: initializr
+          manifests: |
+            deploy/kubernetes/staging.yaml
+          containers: |
+            steeltoe.azurecr.io/initializr-config-server:$(Build.BuildId)
