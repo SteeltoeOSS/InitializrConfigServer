@@ -24,6 +24,7 @@ jobs:
           repository: initializr-config-server
           tags: |
             $(Build.BuildId)
+            latest
         condition:
           and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
       - task: KubernetesManifest@0
