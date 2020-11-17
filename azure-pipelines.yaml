@@ -33,10 +33,7 @@ jobs:
           action: deploy
           kubernetesServiceConnection: SteeltoeProductionAKS
           namespace: initializr
-          manifests: |
-            deploy/kubernetes/deployment.yaml
-            deploy/kubernetes/service.yaml
-          containers: |
-            steeltoe.azurecr.io/initializr-config-server:$(Build.BuildId)
+          manifests: deploy/kubernetes/*.yaml
+          containers: steeltoe.azurecr.io/initializr-config-server:$(Build.BuildId)
         condition:
           and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
