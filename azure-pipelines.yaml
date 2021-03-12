@@ -12,8 +12,8 @@ variables:
 name: $(major).$(minor).$(micro)-$(Rev:r)
 
 stages:
-  stage: assemble
-  displayName: Assemble
+  - stage: assemble
+    displayName: Assemble
     jobs:
       - job: build
         displayName: Build
