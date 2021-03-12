@@ -11,29 +11,48 @@ variables:
 
 name: $(major).$(minor).$(micro)-$(Rev:r)
 
-jobs:
-  - job: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - task: Docker@2
-        displayName: Push Docker Image
-        inputs:
-          command: buildAndPush
-          containerRegistry: SteeltoeContainerRegistry
-          repository: initializr-config-server
-          tags: |
-            $(Build.BuildId)
-            latest
-        condition:
-          and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
-      - task: KubernetesManifest@0
-        displayName: Deploy to Staging
-        inputs:
-          action: deploy
-          kubernetesServiceConnection: SteeltoeStagingAKS
-          namespace: initializr
-          manifests: deploy/kubernetes/*.yaml
-          containers: steeltoe.azurecr.io/initializr-config-server:$(Build.BuildId)
-        condition:
-          and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
+stages:
+  - stage: assemble
+    displayName: Assemble
+    jobs:
+      - job: build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Gradle@1
+            displayName: Gradle Build
+            inputs:
+              jdkVersionOption: 1.11
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: assemble
+    condition:
+      not(eq(variables['build.reason'], 'PullRequest'))
+    jobs:
+      - job: build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            displayName: Push Docker Image
+            inputs:
+              command: buildAndPush
+              containerRegistry: SteeltoeContainerRegistry
+              repository: initializr-config-server
+              tags: |
+                $(Build.BuildId)
+                latest
+            condition:
+              and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
+          - task: KubernetesManifest@0
+            displayName: Deploy to Staging Cluster
+            inputs:
+              action: deploy
+              kubernetesServiceConnection: SteeltoeStagingAKS
+              namespace: initializr
+              manifests: deploy/kubernetes/*.yaml
+              containers: steeltoe.azurecr.io/initializr-config-server:$(Build.BuildId)
+            condition:
+              and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
