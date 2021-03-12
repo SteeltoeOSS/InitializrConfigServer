@@ -11,12 +11,16 @@ variables:
 
 name: $(major).$(minor).$(micro)-$(Rev:r)
 
-jobs:
-  - job: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - task: Gradle@1
-        displayName: Gradle Build
-        inputs:
-          jdkVersionOption: 1.11
+stages:
+  stage: assemble
+  displayName: Assemble
+    jobs:
+      - job: build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Gradle@1
+            displayName: Gradle Build
+            inputs:
+              jdkVersionOption: 1.11
