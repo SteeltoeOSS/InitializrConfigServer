@@ -30,8 +30,8 @@ stages:
     condition:
       not(eq(variables['build.reason'], 'PullRequest'))
     jobs:
-      - job: build
-        displayName: Build
+      - job: deployToKubernetes
+        displayName: Deploy To Kubernetes
         pool:
           vmImage: ubuntu-latest
         steps:
