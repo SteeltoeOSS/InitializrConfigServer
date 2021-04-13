@@ -44,15 +44,11 @@ stages:
               tags: |
                 $(Build.BuildId)
                 latest
-            condition:
-              and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
           - task: KubernetesManifest@0
             displayName: Deploy to Staging Cluster
             inputs:
               action: deploy
               kubernetesServiceConnection: SteeltoeStagingAKS
-              namespace: initializr
-              manifests: deploy/kubernetes/*.yaml
+              manifests: deploy/kubernetes/manifest.yaml
               containers: steeltoe.azurecr.io/initializr-config-server:$(Build.BuildId)
-            condition:
-              and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')))
+              namespace: initializr
