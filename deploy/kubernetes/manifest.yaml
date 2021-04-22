@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: initializr-config-server
+  namespace: initializr
 spec:
   replicas: 2
   selector:
@@ -21,3 +22,15 @@ spec:
         args: ["--debug"]
         ports:
         - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: initializr-config-server
+  namespace: initializr
+spec:
+  ports:
+  - port: 80
+    targetPort: 8888
+  selector:
+    app: initializr-config-server
