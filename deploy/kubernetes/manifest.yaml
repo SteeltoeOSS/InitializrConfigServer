@@ -19,7 +19,6 @@ spec:
       containers:
       - name: initializr-config-server
         image: steeltoe.azurecr.io/initializr-config-server
-        args: ["--debug"]
         ports:
         - containerPort: 8888
 ---
