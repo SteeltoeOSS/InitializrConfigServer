@@ -1,59 +1,32 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.1.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
-    id 'com.gorylenko.gradle-git-properties' version '2.2.2'
+	id 'org.springframework.boot' version '2.5.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
 }
 
 group = steeltoeInitializrConfigServerGroup
 version = steeltoeInitializrConfigServerVersion
-sourceCompatibility = javaVersion
+sourceCompatibility = '11'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
-wrapper {
-    distributionType = Wrapper.DistributionType.ALL
+ext {
+	set('springCloudVersion', "2020.0.3")
 }
 
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-config-server'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+	implementation 'org.springframework.cloud:spring-cloud-config-server'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 test {
-    useJUnitPlatform()
-}
-
-springBoot {
-    buildInfo ()
-}
-
-gitProperties {
-    failOnNoGitDirectory = false
-}
-
-bootJar {
-    manifest {
-        attributes("Implementation-Title": "Steeltoe InitializrConfigServer")
-        attributes("Implementation-Version": steeltoeInitializrConfigServerVersion)
-        attributes("Implementation-Vendor": "SteeltoeOSS/VMware")
-    }
-}
-
-bootRun {
-    bootRun {
-        if (project.hasProperty('args')) {
-            args project.args.split(' ')
-        }
-    }
+	useJUnitPlatform()
 }
