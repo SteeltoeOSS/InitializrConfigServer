@@ -1,0 +1,10 @@
+azure-pipelines.yaml
+build
+Dockerfile
+.classpath
+.dockerignore
+.editorconfig
+.gitignore
+.idea
+.project
+.settings

@@ -2,6 +2,8 @@
 
 A [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html) for [Steeltoe InitializrApi](https://github.com/SteeltoeOSS/InitializrApi)
 
+[![Build Status](https://dev.azure.com/SteeltoeOSS/Steeltoe/_apis/build/status/Initializr/SteeltoeOSS.InitializrConfigServer?branchName=staging)](https://dev.azure.com/SteeltoeOSS/Steeltoe/_build/latest?definitionId=33&branchName=staging)
+
 ## Build
 
 ```sh
