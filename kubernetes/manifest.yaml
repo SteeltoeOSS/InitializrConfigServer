@@ -23,7 +23,7 @@ spec:
         - containerPort: #@ int(data.values.container_port)
         #@ if/end data.values.args:
         args: #@ data.values.args.split()
-    replicas: #@ int(data.values.replica_count)
+  replicas: #@ int(data.values.replica_count)
 ---
 apiVersion: v1
 kind: Service
