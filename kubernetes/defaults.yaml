@@ -1,0 +1,10 @@
+#@data/values-schema
+#@schema/type any=True
+---
+name: initializr-config-server
+image_name: steeltoe.azurecr.io/initializr-config-server
+image_tag: latest
+container_port: 8888
+service_port: 80
+replica_count: 1
+args: ""
