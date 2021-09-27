@@ -15,6 +15,15 @@ $ ./gradlew bootJar
 $ docker build -t initializr-config-server .
 ```
 
+## Kubernetes
+```sh
+# default manifest
+$ ytt -f kubernetes
+
+# sample custom manifest, see kubernetes/defaults.yaml for available parameters
+$ ytt -f kubernetes -v args=debug
+```
+
 ## Run
 
 ### Using Application Jar
