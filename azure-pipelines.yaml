@@ -36,7 +36,7 @@ stages:
               args: >
                 -f kubernetes
                 -v image_tag=$(Build.BuildId)
-                -v args=debug
+                -v args=--debug
                 --output-files manifests/staging
           - task: ShellScript@2
             displayName: Generate Production Manifest
