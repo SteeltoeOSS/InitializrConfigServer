@@ -20,7 +20,7 @@ jobs:
           distribution: liberica
 
       - name: Build with Gradle
-        run: gradlew --no-daemon build
+        run: ./gradlew --no-daemon build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
