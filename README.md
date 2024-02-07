@@ -2,26 +2,16 @@
 
 A [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html) for [Steeltoe InitializrApi](https://github.com/SteeltoeOSS/InitializrApi)
 
-[![Build Status](https://dev.azure.com/SteeltoeOSS/Steeltoe/_apis/build/status/Initializr/SteeltoeOSS.InitializrConfigServer?branchName=main)](https://dev.azure.com/SteeltoeOSS/Steeltoe/_build/latest?definitionId=33&branchName=main)
-
 ## Build
 
 ```sh
-$ ./gradlew bootJar
+./gradlew bootJar
 ```
 
 ## Docker
-```sh
-$ docker build -t initializr-config-server .
-```
 
-## Kubernetes
 ```sh
-# default manifest
-$ ytt -f kubernetes
-
-# sample custom manifest, see kubernetes/defaults.yaml for available parameters
-$ ytt -f kubernetes -v args=debug
+docker build -t initializr-config-server .
 ```
 
 ## Run
@@ -29,58 +19,45 @@ $ ytt -f kubernetes -v args=debug
 ### Using Application Jar
 
 ```sh
-$ java -jar build/libs/InitializrConfigServer-*.jar <args>
+java -jar build/libs/Steeltoe.InitializrConfigServer-*.jar <args>
 ```
 
 ### Using Gradle
 
 ```sh
-$ ./gradlew bootRun -Pargs=<args>
+./gradlew bootRun -Pargs=<args>
 ```
 
 ### Using Docker
 
 ```sh
-$ docker -it --rm -p 8888:8888 initializr-config-server <args>
-```
-
-## Deploy
-
-### Kubernetes
-
-```sh
-$ kubectl apply -f deploy/manifest/local.yaml
-```
-
-
-### Cloud Foundry
-
-```sh
-$ cf push -f deploy/cloud-foundry/manifest.yaml
+docker run -it --rm -p 8888:8888 initializr-config-server <args>
 ```
 
 ## Options
 
 ### Logging
 
-```
+```text
 logging.level.io.steeltoe={error,warn,info,debug,trace}
 ```
 
 ### Git Backend
-```
+
+```text
 spring.cloud.config.server.git.uri=<url>
 ```
 
 ### Local Backend
-```
+
+```text
 spring.profiles.active=native
 spring.cloud.config.server.native.searchLocations=file://<path>
 ```
 
 ## Sample URL paths
 
-```
+```text
 # development profile
 /SteeltoeInitializr/Development
 
