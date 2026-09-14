@@ -1,9 +1,9 @@
-FROM bellsoft/liberica-openjdk-alpine:17 as build
+FROM bellsoft/liberica-openjdk-alpine:25 as build
 WORKDIR /scratch
 COPY . .
 RUN ./gradlew --no-daemon build
 
-FROM bellsoft/liberica-openjdk-alpine:17
+FROM bellsoft/liberica-openjdk-alpine:25
 WORKDIR /srv
 COPY --from=build /scratch/build/libs/Steeltoe.InitializrConfigServer-*.jar Steeltoe.InitializrConfigServer.jar
 EXPOSE 8888
